@@ -1,0 +1,44 @@
+# Dockerfile for AI2AIM RX Platform - Development Environment
+# This is optimized for local development and sharing with team members
+
+FROM node:22-slim
+
+# Install necessary tools for development (including build tools for native modules)
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    wget \
+    python3 \
+    make \
+    g++ \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY package.json package-lock.json ./
+
+# Install all dependencies (including dev dependencies)
+# Set Python for node-gyp
+ENV PYTHON=/usr/bin/python3
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the application
+COPY . .
+
+# Create .env.local if it doesn't exist (will be overridden by docker-compose)
+RUN touch .env.local
+
+# Expose the development port
+EXPOSE 3000
+
+# Set environment variables for development
+ENV NODE_ENV=development
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+# Start the development server
+CMD ["npm", "run", "dev"]

@@ -8,11 +8,10 @@ import { Badge } from "@/components/ui/badge"
 import { PFTResultsForm } from "@/components/sleep-clinic/pft-results-form"
 import { PFTInterpretationViewer } from "@/components/sleep-clinic/pft-interpretation-viewer"
 import { SpirometryChart } from "@/components/sleep-clinic/spirometry-chart"
-import {
+import type {
   PFTTest,
   PFTResult,
   PFTInterpretation,
-  pftService,
 } from "@/lib/medical/pft-service"
 import { createClientSupabase } from "@/lib/supabase/client"
 import { Patient } from "@/types/database"
@@ -39,18 +38,36 @@ export default function PFTTestDetailPage() {
   async function fetchTestData() {
     setLoading(true)
     try {
-      const complete = await pftService.getCompletePFTTest(testId)
-      setTest(complete.test)
-      setResult(complete.result)
-      setInterpretation(complete.interpretation)
+      // Fetch test data via API
+      const testResponse = await fetch(`/api/pft/tests/${testId}`)
+      let testData = null
+      if (testResponse.ok) {
+        testData = await testResponse.json()
+        setTest(testData.test || testData)
+      }
 
-      if (complete.test) {
-        // Fetch patient
+      // Fetch results via API
+      const resultsResponse = await fetch(`/api/pft/tests/${testId}/results`)
+      if (resultsResponse.ok) {
+        const resultsData = await resultsResponse.json()
+        setResult(resultsData.result || resultsData)
+      }
+
+      // Fetch interpretation via API
+      const interpretationResponse = await fetch(`/api/pft/tests/${testId}/interpret`)
+      if (interpretationResponse.ok) {
+        const interpretationData = await interpretationResponse.json()
+        setInterpretation(interpretationData.interpretation || interpretationData)
+      }
+
+      // Fetch patient if we have test data
+      const currentTest = testData?.test || testData
+      if (currentTest?.patient_id) {
         const supabase = createClientSupabase()
         const { data: patientData } = await supabase
           .from("patients")
           .select("*")
-          .eq("id", complete.test.patient_id)
+          .eq("id", currentTest.patient_id)
           .single()
 
         if (patientData) {

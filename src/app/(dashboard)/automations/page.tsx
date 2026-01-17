@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { 
   Zap, 
@@ -17,6 +18,7 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { useSkin } from "@/components/theme/skin-provider"
 
 const automations = [
   { id: "AUTO-101", name: "Autonomous Infusion Dispatch", type: "Clinical", status: "Active", runs: 1240, success: "99.8%", nodeCount: 12 },
@@ -27,6 +29,8 @@ const automations = [
 ]
 
 export default function AutomationsPage() {
+  const { skin } = useSkin()
+  
   return (
     <div className="flex flex-col gap-8 p-8 max-w-7xl mx-auto font-sans">
       {/* Header */}
@@ -40,10 +44,10 @@ export default function AutomationsPage() {
             &quot;Design and deploy autonomous medical rituals via the Aeterna Runtime.&quot;
           </p>
         </div>
-        <button className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-black text-xs uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-105 transition-all">
+        <Link href="/automations/new" className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-black text-xs uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-105 transition-all">
           <Plus className="h-4 w-4" />
           Create Automation
-        </button>
+        </Link>
       </div>
 
       {/* Real-time Telemetry Row */}
@@ -137,6 +141,52 @@ export default function AutomationsPage() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </Card>
+
+        {/* Visual Workflow Examples */}
+        <Card className="lg:col-span-2 aeterna-glass border-white/5 overflow-hidden mt-8">
+          <div className="p-4 border-b border-white/5 bg-white/[0.02]">
+            <CardTitle className="text-xs font-black uppercase tracking-widest text-foreground/60 flex items-center gap-2">
+              <Workflow className="h-4 w-4 text-primary" />
+              Sleep Clinic Workflow Examples
+            </CardTitle>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { name: 'CPAP Compliance Alert', desc: 'Daily compliance check and alerts', href: '/automations/new?example=cpap-compliance' },
+                { name: 'Sleep Study Dispatch', desc: 'Auto-dispatch monitors for studies', href: '/automations/new?example=sleep-study' },
+                { name: 'DME Authorization', desc: 'Auto-check insurance and authorize', href: '/automations/new?example=dme-auth' },
+                { name: 'PFT Results Processing', desc: 'Process and interpret PFT results', href: '/automations/new?example=pft-processing' },
+                { name: 'Equipment Maintenance', desc: 'Schedule and track maintenance', href: '/automations/new?example=maintenance' },
+                { name: 'Referral Processing', desc: 'Auto-process referral forms', href: '/automations/new?example=referral' }
+              ].map((example, i) => (
+                <Link
+                  key={i}
+                  href={example.href}
+                  className={cn(
+                    "p-4 rounded-xl border transition-all hover:scale-[1.02]",
+                    skin === "legacy"
+                      ? "bg-white border-slate-200 hover:border-emerald-300"
+                      : "aeterna-glass border-white/10 hover:border-primary/30"
+                  )}
+                >
+                  <h4 className={cn(
+                    "text-sm font-black mb-1",
+                    skin === "legacy" ? "text-slate-900" : "text-foreground"
+                  )}>
+                    {example.name}
+                  </h4>
+                  <p className={cn(
+                    "text-xs",
+                    skin === "legacy" ? "text-slate-600" : "text-foreground/60"
+                  )}>
+                    {example.desc}
+                  </p>
+                </Link>
+              ))}
+            </div>
           </div>
         </Card>
 

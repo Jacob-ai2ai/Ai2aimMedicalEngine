@@ -8,8 +8,7 @@ import { DMEEquipmentSelector } from "@/components/sleep-clinic/dme-equipment-se
 import { EquipmentStatusBadge } from "@/components/sleep-clinic/equipment-status-badge"
 import { SerialNumberTracker } from "@/components/sleep-clinic/serial-number-tracker"
 import { EquipmentAssignmentCard } from "@/components/sleep-clinic/equipment-assignment-card"
-import { DMEEquipment, DMEInventoryItem, StockLevel } from "@/lib/medical/dme-service"
-import { dmeService } from "@/lib/medical/dme-service"
+import type { DMEEquipment, DMEInventoryItem, StockLevel } from "@/lib/medical/dme-service"
 import { Plus, Search, Package, Filter } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
@@ -30,23 +29,37 @@ export default function DMEEquipmentPage() {
   async function fetchData() {
     setLoading(true)
     try {
-      // Fetch equipment catalog
+      // Fetch equipment catalog via API
       const categoryParam = selectedCategory !== "all" ? selectedCategory : undefined
-      const equipmentData = await dmeService.getAvailableEquipment(
-        categoryParam as any,
-        100
-      )
-      setEquipment(equipmentData)
+      const equipmentParams = new URLSearchParams()
+      if (categoryParam) equipmentParams.append("category", categoryParam)
+      equipmentParams.append("limit", "100")
+      
+      const equipmentResponse = await fetch(`/api/dme/equipment?${equipmentParams.toString()}`)
+      let equipmentList: DMEEquipment[] = []
+      if (equipmentResponse.ok) {
+        const equipmentData = await equipmentResponse.json()
+        equipmentList = equipmentData.equipment || equipmentData || []
+        setEquipment(equipmentList)
+      }
 
-      // Fetch stock levels
-      const stockData = await dmeService.checkStockLevels(categoryParam)
-      setStockLevels(stockData)
+      // Fetch stock levels via API
+      const stockParams = new URLSearchParams()
+      if (categoryParam) stockParams.append("category", categoryParam)
+      const stockResponse = await fetch(`/api/dme/inventory/stock-levels?${stockParams.toString()}`)
+      if (stockResponse.ok) {
+        const stockData = await stockResponse.json()
+        setStockLevels(stockData.stockLevels || stockData || [])
+      }
 
-      // Fetch inventory for first equipment item (or all if category selected)
-      if (equipmentData.length > 0) {
-        const firstEquipmentId = equipmentData[0].id
-        const inventoryData = await dmeService.getInventoryForEquipment(firstEquipmentId)
-        setInventory(inventoryData)
+      // Fetch inventory for first equipment item via API
+      if (equipmentList.length > 0) {
+        const firstEquipmentId = equipmentList[0].id
+        const inventoryResponse = await fetch(`/api/dme/inventory?equipmentId=${firstEquipmentId}`)
+        if (inventoryResponse.ok) {
+          const inventoryData = await inventoryResponse.json()
+          setInventory(inventoryData.inventory || inventoryData || [])
+        }
       }
     } catch (error) {
       console.error("Error fetching data:", error)

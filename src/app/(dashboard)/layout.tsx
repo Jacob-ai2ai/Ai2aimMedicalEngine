@@ -1,5 +1,6 @@
-import { redirect } from "next/navigation"
-import { createServerSupabase } from "@/lib/supabase/server"
+// AUTH DISABLED FOR DEMO - Remove this in production
+// import { redirect } from "next/navigation"
+// import { createServerSupabase } from "@/lib/supabase/server"
 import { Sidebar } from "@/components/layout/sidebar"
 import { MobileNav } from "@/components/layout/mobile-nav"
 import { Header } from "@/components/layout/header"
@@ -11,14 +12,15 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const supabase = await createServerSupabase()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  // AUTH DISABLED FOR DEMO - Remove this in production
+  // const supabase = await createServerSupabase()
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser()
 
-  if (!user) {
-    redirect("/login")
-  }
+  // if (!user) {
+  //   redirect("/login")
+  // }
 
   return (
     <div className="flex min-h-screen bg-transparent selection:bg-primary/30 selection:text-white transition-colors duration-500">

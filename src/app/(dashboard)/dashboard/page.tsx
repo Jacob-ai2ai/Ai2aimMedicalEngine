@@ -147,43 +147,43 @@ export default function DashboardPage() {
 
   return (
     <div className={cn(
-      "p-6 lg:p-10 space-y-8 max-w-[1600px] mx-auto relative z-10 transition-colors duration-500",
-      skin === "legacy" ? "modern-light-gradient min-h-screen pt-12" : ""
+      "p-8 lg:p-12 space-y-10 max-w-[1800px] mx-auto relative z-10 transition-colors duration-500",
+      skin === "legacy" ? "modern-light-gradient min-h-screen pt-16" : ""
     )}>
-      <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-3">
+      <header className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-4">
+        <div className="space-y-3">
+          <div className="flex items-center gap-4">
             <span className={cn(
-              "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border",
+              "px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border",
               skin === "legacy" 
-                ? "bg-emerald-50 text-emerald-600 border-emerald-100 shadow-sm"
-                : "bg-primary/10 text-primary border-primary/20"
+                ? "bg-emerald-50 text-emerald-600 border-emerald-200 shadow-sm"
+                : "bg-primary/15 text-primary border-primary/30"
             )}>
               Aeterna OS v2.2
             </span>
             <span className={cn(
-              "text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5",
-              skin === "legacy" ? "text-slate-400" : "text-foreground/40"
+              "text-xs font-semibold uppercase tracking-wide flex items-center gap-2",
+              skin === "legacy" ? "text-slate-500" : "text-foreground/50"
             )}>
-              <Globe className="h-3 w-3" /> Satellite Uplink: Active
+              <Globe className="h-4 w-4" /> Satellite Uplink: Active
             </span>
           </div>
           <h1 className={cn(
-            "text-5xl font-black tracking-tighter uppercase",
+            "text-6xl md:text-7xl font-black tracking-tight leading-tight",
             skin === "legacy" ? "text-slate-900" : "text-foreground"
           )}>
             The Bridge <span className="text-primary neural-glow">Control</span>
           </h1>
           <p className={cn(
-            "text-base font-medium",
-            skin === "legacy" ? "text-slate-500" : "text-foreground/50"
+            "text-lg font-medium max-w-2xl",
+            skin === "legacy" ? "text-slate-600" : "text-foreground/60"
           )}>
             Unified Neural Command Deck for Ai2aim Medical Ecosystem
           </p>
         </div>
         
         <div className="flex gap-4">
-          <Button asChild size="lg" className="rounded-2xl shadow-xl shadow-emerald-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 bg-primary text-white font-bold px-8">
+          <Button asChild size="lg" className="rounded-2xl shadow-xl shadow-emerald-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 bg-primary text-white font-bold px-10 py-6 h-auto">
             <Link href="/prescriptions/new">
               <Plus className="h-5 w-5 mr-2" />
               INITIATE RX
@@ -193,10 +193,10 @@ export default function DashboardPage() {
             variant="outline" 
             size="lg"
             className={cn(
-              "rounded-2xl transition-all duration-300 px-8",
+              "rounded-2xl transition-all duration-300 px-10 py-6 h-auto font-semibold",
               skin === "legacy" 
-                ? "bg-white/80 border-slate-200 text-slate-700 hover:bg-white shadow-sm"
-                : "aeterna-glass border-white/10 hover:border-primary/50 text-foreground"
+                ? "bg-white border-slate-300 text-slate-700 hover:bg-slate-50 shadow-md hover:shadow-lg"
+                : "aeterna-glass border-white/15 hover:border-primary/50 text-foreground hover:bg-white/5"
             )}
           >
             <Brain className="h-5 w-5 mr-2 text-primary" />
@@ -208,138 +208,138 @@ export default function DashboardPage() {
       {/* Metrics Layer */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         <Card className={cn(
-          "p-6 relative overflow-hidden group transition-all duration-500 rounded-[1.5rem]",
+          "p-8 relative overflow-hidden group transition-all duration-500 rounded-2xl",
           skin === "legacy" 
-            ? "bg-white border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-emerald-500/10" 
-            : "aeterna-glass border-white/5 hover:border-primary/30"
+            ? "bg-white border-slate-200 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 hover:-translate-y-1" 
+            : "aeterna-glass border-white/10 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/20"
         )}>
           <div className="relative z-10 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-2">
               <p className={cn(
-                "text-[10px] font-bold uppercase tracking-widest",
-                skin === "legacy" ? "text-slate-400" : "text-foreground/40"
+                "text-xs font-semibold uppercase tracking-wide",
+                skin === "legacy" ? "text-slate-500" : "text-foreground/50"
               )}>Active Patients</p>
               <p className={cn(
-                "text-3xl font-black",
+                "text-4xl font-black leading-none",
                 skin === "legacy" ? "text-slate-900" : "text-foreground"
               )}>1,280</p>
-              <p className="text-[10px] font-bold text-emerald-500 flex items-center gap-1">
-                <ArrowUpRight className="h-3.5 w-3.5" /> +12%
+              <p className="text-xs font-semibold text-emerald-500 flex items-center gap-1.5">
+                <ArrowUpRight className="h-4 w-4" /> +12%
               </p>
             </div>
             <div className={cn(
-              "p-3 rounded-2xl transition-colors duration-500",
-              skin === "legacy" ? "bg-emerald-50 text-emerald-500" : "text-primary/20 group-hover:text-primary/40"
+              "p-4 rounded-2xl transition-colors duration-500",
+              skin === "legacy" ? "bg-emerald-50 text-emerald-500" : "text-primary/30 group-hover:text-primary/50 bg-primary/5"
             )}>
-              <Users className="h-8 w-8" />
+              <Users className="h-10 w-10" />
             </div>
           </div>
         </Card>
 
         <Card className={cn(
-          "p-6 relative overflow-hidden group transition-all duration-500 rounded-[1.5rem]",
+          "p-8 relative overflow-hidden group transition-all duration-500 rounded-2xl",
           skin === "legacy" 
-            ? "bg-white border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-violet-500/10" 
-            : "aeterna-glass border-white/5 hover:border-secondary/30"
+            ? "bg-white border-slate-200 shadow-lg hover:shadow-xl hover:shadow-violet-500/20 hover:-translate-y-1" 
+            : "aeterna-glass border-white/10 hover:border-secondary/40 hover:shadow-2xl hover:shadow-secondary/20"
         )}>
           <div className="relative z-10 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-2">
               <p className={cn(
-                "text-[10px] font-bold uppercase tracking-widest",
-                skin === "legacy" ? "text-slate-400" : "text-foreground/40"
+                "text-xs font-semibold uppercase tracking-wide",
+                skin === "legacy" ? "text-slate-500" : "text-foreground/50"
               )}>Pending RX</p>
               <p className={cn(
-                "text-3xl font-black",
+                "text-4xl font-black leading-none",
                 skin === "legacy" ? "text-slate-900" : "text-foreground"
               )}>42</p>
-              <p className="text-[10px] font-bold text-violet-500 flex items-center gap-1 uppercase">8 Urgent</p>
+              <p className="text-xs font-semibold text-violet-500 flex items-center gap-1.5">8 Urgent</p>
             </div>
             <div className={cn(
-              "p-3 rounded-2xl transition-colors duration-500",
-              skin === "legacy" ? "bg-violet-50 text-violet-500" : "text-secondary/20 group-hover:text-secondary/40"
+              "p-4 rounded-2xl transition-colors duration-500",
+              skin === "legacy" ? "bg-violet-50 text-violet-500" : "text-secondary/30 group-hover:text-secondary/50 bg-secondary/5"
             )}>
-              <Pill className="h-8 w-8" />
+              <Pill className="h-10 w-10" />
             </div>
           </div>
         </Card>
 
         <Card className={cn(
-          "p-6 relative overflow-hidden group transition-all duration-500 rounded-[1.5rem]",
+          "p-8 relative overflow-hidden group transition-all duration-500 rounded-2xl",
           skin === "legacy" 
-            ? "bg-white border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-blue-500/10" 
-            : "aeterna-glass border-white/5 hover:border-blue-500/30"
+            ? "bg-white border-slate-200 shadow-lg hover:shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1" 
+            : "aeterna-glass border-white/10 hover:border-blue-500/40 hover:shadow-2xl hover:shadow-blue-500/20"
         )}>
           <div className="relative z-10 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-2">
               <p className={cn(
-                "text-[10px] font-bold uppercase tracking-widest",
-                skin === "legacy" ? "text-slate-400" : "text-foreground/40"
+                "text-xs font-semibold uppercase tracking-wide",
+                skin === "legacy" ? "text-slate-500" : "text-foreground/50"
               )}>Faxes & Comms</p>
               <p className={cn(
-                "text-3xl font-black",
+                "text-4xl font-black leading-none",
                 skin === "legacy" ? "text-slate-900" : "text-foreground"
               )}>18</p>
-              <p className="text-[10px] font-bold text-blue-500 flex items-center gap-1 uppercase tracking-tighter">Secure</p>
+              <p className="text-xs font-semibold text-blue-500 flex items-center gap-1.5">Secure</p>
             </div>
             <div className={cn(
-              "p-3 rounded-2xl transition-colors duration-500",
-              skin === "legacy" ? "bg-blue-50 text-blue-500" : "text-blue-400/20 group-hover:text-blue-400/40"
+              "p-4 rounded-2xl transition-colors duration-500",
+              skin === "legacy" ? "bg-blue-50 text-blue-500" : "text-blue-400/30 group-hover:text-blue-400/50 bg-blue-500/5"
             )}>
-              <Mail className="h-8 w-8" />
+              <Mail className="h-10 w-10" />
             </div>
           </div>
         </Card>
 
         <Card className={cn(
-          "p-6 relative overflow-hidden group transition-all duration-500 rounded-[1.5rem]",
+          "p-8 relative overflow-hidden group transition-all duration-500 rounded-2xl",
           skin === "legacy" 
-            ? "bg-white border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-red-500/10" 
-            : "aeterna-glass border-white/5 hover:border-red-500/30"
+            ? "bg-white border-slate-200 shadow-lg hover:shadow-xl hover:shadow-red-500/20 hover:-translate-y-1" 
+            : "aeterna-glass border-white/10 hover:border-red-500/40 hover:shadow-2xl hover:shadow-red-500/20"
         )}>
           <div className="relative z-10 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-2">
               <p className={cn(
-                "text-[10px] font-bold uppercase tracking-widest",
-                skin === "legacy" ? "text-slate-400" : "text-foreground/40"
+                "text-xs font-semibold uppercase tracking-wide",
+                skin === "legacy" ? "text-slate-500" : "text-foreground/50"
               )}>At-Risk Follow-ups</p>
               <p className={cn(
-                "text-3xl font-black",
+                "text-4xl font-black leading-none",
                 skin === "legacy" ? "text-slate-900" : "text-foreground"
               )}>{followUpCount}</p>
-              <p className="text-[10px] font-bold text-red-500 flex items-center gap-1 uppercase tracking-tighter">Pending</p>
+              <p className="text-xs font-semibold text-red-500 flex items-center gap-1.5">Pending</p>
             </div>
             <div className={cn(
-              "p-3 rounded-2xl transition-colors duration-500",
-              skin === "legacy" ? "bg-red-50 text-red-500" : "text-red-400/20 group-hover:text-red-400/40"
+              "p-4 rounded-2xl transition-colors duration-500",
+              skin === "legacy" ? "bg-red-50 text-red-500" : "text-red-400/30 group-hover:text-red-400/50 bg-red-500/5"
             )}>
-              <BellRing className="h-8 w-8" />
+              <BellRing className="h-10 w-10" />
             </div>
           </div>
         </Card>
 
         <Card className={cn(
-          "p-6 relative overflow-hidden group transition-all duration-500 rounded-[1.5rem]",
+          "p-8 relative overflow-hidden group transition-all duration-500 rounded-2xl",
           skin === "legacy" 
-            ? "bg-white border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-amber-500/10" 
-            : "aeterna-glass border-white/5 hover:border-emerald-500/30"
+            ? "bg-white border-slate-200 shadow-lg hover:shadow-xl hover:shadow-amber-500/20 hover:-translate-y-1" 
+            : "aeterna-glass border-white/10 hover:border-emerald-500/40 hover:shadow-2xl hover:shadow-emerald-500/20"
         )}>
           <div className="relative z-10 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-2">
               <p className={cn(
-                "text-[10px] font-bold uppercase tracking-widest",
-                skin === "legacy" ? "text-slate-400" : "text-foreground/40"
+                "text-xs font-semibold uppercase tracking-wide",
+                skin === "legacy" ? "text-slate-500" : "text-foreground/50"
               )}>Revenue Pulse</p>
               <p className={cn(
-                "text-3xl font-black",
+                "text-4xl font-black leading-none",
                 skin === "legacy" ? "text-slate-900" : "text-foreground"
               )}>$412K</p>
-              <p className="text-[10px] font-bold text-amber-500 flex items-center gap-1 uppercase tracking-tighter">AR Optimized</p>
+              <p className="text-xs font-semibold text-amber-500 flex items-center gap-1.5">AR Optimized</p>
             </div>
             <div className={cn(
-              "p-3 rounded-2xl transition-colors duration-500",
-              skin === "legacy" ? "bg-amber-50 text-amber-500" : "text-emerald-400/20 group-hover:text-emerald-400/40"
+              "p-4 rounded-2xl transition-colors duration-500",
+              skin === "legacy" ? "bg-amber-50 text-amber-500" : "text-emerald-400/30 group-hover:text-emerald-400/50 bg-emerald-500/5"
             )}>
-              <BarChart3 className="h-8 w-8" />
+              <BarChart3 className="h-10 w-10" />
             </div>
           </div>
         </Card>
@@ -351,21 +351,21 @@ export default function DashboardPage() {
         <div className="lg:col-span-2 space-y-10">
           <section className="space-y-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <Brain className={cn(
-                  "h-6 w-6 neural-glow",
+                  "h-7 w-7 neural-glow",
                   skin === "legacy" ? "text-emerald-500" : "text-primary"
                 )} />
                 <h2 className={cn(
-                  "text-xs font-black uppercase tracking-widest",
-                  skin === "legacy" ? "text-slate-400" : "text-foreground/80"
+                  "text-lg font-bold uppercase tracking-wide",
+                  skin === "legacy" ? "text-slate-600" : "text-foreground"
                 )}>Cognitive Decision Feed</h2>
               </div>
-              <div className="flex items-center gap-2.5">
-                <span className="h-2.5 w-2.5 bg-primary rounded-full animate-pulse" />
+              <div className="flex items-center gap-3">
+                <span className="h-3 w-3 bg-primary rounded-full animate-pulse" />
                 <span className={cn(
-                  "text-[10px] font-bold uppercase tracking-tighter",
-                  skin === "legacy" ? "text-emerald-600" : "text-primary/60"
+                  "text-xs font-semibold uppercase tracking-wide",
+                  skin === "legacy" ? "text-emerald-600" : "text-primary"
                 )}>Live Neural Stream</span>
               </div>
             </div>
@@ -400,63 +400,63 @@ export default function DashboardPage() {
               {/* Workflow Events */}
               {events.length === 0 && followUps.length === 0 ? (
                 <div className={cn(
-                  "p-16 text-center rounded-[2rem] border transition-all duration-500",
+                  "p-20 text-center rounded-2xl border transition-all duration-500",
                   skin === "legacy" 
-                    ? "bg-white border-slate-100 shadow-xl shadow-slate-200/30" 
-                    : "aeterna-glass border-white/5"
+                    ? "bg-white border-slate-200 shadow-lg" 
+                    : "aeterna-glass border-white/10"
                 )}>
                   <RefreshCw className={cn(
-                    "h-10 w-10 mx-auto animate-spin mb-6",
-                    skin === "legacy" ? "text-slate-200" : "text-white/10"
+                    "h-12 w-12 mx-auto animate-spin mb-6",
+                    skin === "legacy" ? "text-slate-300" : "text-foreground/20"
                   )} />
                   <p className={cn(
-                    "text-xs font-bold uppercase tracking-widest",
-                    skin === "legacy" ? "text-slate-300" : "text-foreground/40"
+                    "text-sm font-semibold uppercase tracking-wide",
+                    skin === "legacy" ? "text-slate-400" : "text-foreground/50"
                   )}>Listening for autonomous neural events...</p>
                 </div>
               ) : (
                 events.map((event) => (
                   <div key={event.id} className="group relative">
                     <div className={cn(
-                      "absolute left-0 top-0 bottom-0 w-1 transition-all rounded-full",
-                      skin === "legacy" ? "bg-emerald-100 group-hover:bg-emerald-500" : "bg-primary/20 group-hover:bg-primary"
+                      "absolute left-0 top-0 bottom-0 w-1.5 transition-all rounded-full",
+                      skin === "legacy" ? "bg-emerald-200 group-hover:bg-emerald-500" : "bg-primary/30 group-hover:bg-primary"
                     )} />
                     <div className={cn(
-                      "ml-6 p-6 transition-all duration-500 rounded-[1.5rem] border",
+                      "ml-8 p-6 transition-all duration-500 rounded-2xl border",
                       skin === "legacy" 
-                        ? "bg-white border-slate-100 shadow-lg shadow-slate-200/30 hover:shadow-xl hover:border-emerald-100" 
-                        : "aeterna-glass border-white/5 hover:border-primary/20"
+                        ? "bg-white border-slate-200 shadow-md hover:shadow-lg hover:border-emerald-200 hover:-translate-y-0.5" 
+                        : "aeterna-glass border-white/10 hover:border-primary/30 hover:shadow-xl"
                     )}>
                       <div className="flex items-start justify-between gap-6">
-                        <div className="space-y-2">
+                        <div className="space-y-3 flex-1">
                           <p className={cn(
-                            "text-base font-bold transition-colors tracking-tight",
-                            skin === "legacy" ? "text-slate-700 group-hover:text-emerald-600" : "text-foreground/90 group-hover:text-primary"
+                            "text-lg font-semibold transition-colors leading-snug",
+                            skin === "legacy" ? "text-slate-800 group-hover:text-emerald-600" : "text-foreground group-hover:text-primary"
                           )}>
                             {event.narrative}
                           </p>
                           <div className="flex items-center gap-4">
                             <span className={cn(
-                              "text-[10px] font-black uppercase tracking-widest",
-                              skin === "legacy" ? "text-slate-300" : "text-foreground/30"
+                              "text-xs font-medium",
+                              skin === "legacy" ? "text-slate-400" : "text-foreground/40"
                             )}>
                               {new Date(event.timestamp).toLocaleTimeString()}
                             </span>
                             <span className={cn(
-                              "text-[10px] px-2 py-0.5 rounded font-black uppercase border",
+                              "text-xs px-3 py-1 rounded-lg font-semibold uppercase tracking-wide border",
                               skin === "legacy" 
-                                ? "bg-slate-50 text-slate-400 border-slate-100" 
-                                : "bg-white/5 text-foreground/40 border-white/5"
+                                ? "bg-slate-50 text-slate-500 border-slate-200" 
+                                : "bg-white/5 text-foreground/50 border-white/10"
                             )}>
                               {event.description}
                             </span>
                           </div>
                         </div>
                         <div className={cn(
-                          "px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest border",
+                          "px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide border shrink-0",
                           event.type === "decision" 
-                            ? (skin === "legacy" ? "bg-emerald-50 text-emerald-600 border-emerald-100" : "bg-primary/10 text-primary border-primary/20")
-                            : (skin === "legacy" ? "bg-blue-50 text-blue-600 border-blue-100" : "bg-blue-500/10 text-blue-400 border-blue-500/20")
+                            ? (skin === "legacy" ? "bg-emerald-50 text-emerald-600 border-emerald-200" : "bg-primary/15 text-primary border-primary/30")
+                            : (skin === "legacy" ? "bg-blue-50 text-blue-600 border-blue-200" : "bg-blue-500/15 text-blue-400 border-blue-500/30")
                         )}>
                           {event.type}
                         </div>
@@ -469,17 +469,17 @@ export default function DashboardPage() {
           </section>
 
           <section className="space-y-6">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <Network className={cn(
-                "h-6 w-6",
+                "h-7 w-7",
                 skin === "legacy" ? "text-violet-500" : "text-secondary"
               )} />
               <h2 className={cn(
-                "text-xs font-black uppercase tracking-widest",
-                skin === "legacy" ? "text-slate-400" : "text-foreground/80"
+                "text-lg font-bold uppercase tracking-wide",
+                skin === "legacy" ? "text-slate-600" : "text-foreground"
               )}>Workflow Architect Loop</h2>
             </div>
-            <CognitiveCard className="p-0 overflow-hidden">
+            <CognitiveCard className="p-0 overflow-hidden rounded-2xl">
                <div className="p-8">
                   <WorkflowArchitect />
                </div>
@@ -556,79 +556,79 @@ export default function DashboardPage() {
 
           {/* Sleep Clinic Widgets */}
           <section className="space-y-6">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <Moon className={cn(
-                "h-6 w-6",
+                "h-7 w-7",
                 skin === "legacy" ? "text-emerald-500" : "text-primary"
               )} />
               <h2 className={cn(
-                "text-xs font-black uppercase tracking-widest",
-                skin === "legacy" ? "text-slate-400" : "text-foreground/80"
+                "text-lg font-bold uppercase tracking-wide",
+                skin === "legacy" ? "text-slate-600" : "text-foreground"
               )}>Sleep Clinic Status</h2>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <Card className={cn(
-                "p-5 transition-all rounded-[1.5rem] border",
+                "p-6 transition-all rounded-2xl border",
                 skin === "legacy" 
-                  ? "bg-white border-slate-100 shadow-lg shadow-slate-200/30 hover:border-orange-200" 
-                  : "aeterna-glass border-white/5 hover:border-orange-500/30"
+                  ? "bg-white border-slate-200 shadow-md hover:shadow-lg hover:border-orange-300 hover:-translate-y-0.5" 
+                  : "aeterna-glass border-white/10 hover:border-orange-500/40 hover:shadow-xl"
               )}>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className={cn(
-                      "text-[9px] font-black uppercase tracking-widest",
-                      skin === "legacy" ? "text-slate-300" : "text-foreground/40"
+                      "text-xs font-semibold uppercase tracking-wide mb-1",
+                      skin === "legacy" ? "text-slate-500" : "text-foreground/50"
                     )}>Non-Compliant</p>
-                    <p className="text-2xl font-black text-orange-500">{nonCompliantCount}</p>
+                    <p className="text-3xl font-black text-orange-500 leading-none">{nonCompliantCount}</p>
                   </div>
-                  <TrendingDown className="h-7 w-7 text-orange-500/20" />
+                  <TrendingDown className="h-8 w-8 text-orange-500/30" />
                 </div>
               </Card>
 
               <Card className={cn(
-                "p-5 transition-all rounded-[1.5rem] border",
+                "p-6 transition-all rounded-2xl border",
                 skin === "legacy" 
-                  ? "bg-white border-slate-100 shadow-lg shadow-slate-200/30 hover:border-blue-200" 
-                  : "aeterna-glass border-white/5 hover:border-blue-500/30"
+                  ? "bg-white border-slate-200 shadow-md hover:shadow-lg hover:border-blue-300 hover:-translate-y-0.5" 
+                  : "aeterna-glass border-white/10 hover:border-blue-500/40 hover:shadow-xl"
               )}>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className={cn(
-                      "text-[9px] font-black uppercase tracking-widest",
-                      skin === "legacy" ? "text-slate-300" : "text-foreground/40"
+                      "text-xs font-semibold uppercase tracking-wide mb-1",
+                      skin === "legacy" ? "text-slate-500" : "text-foreground/50"
                     )}>Pending Studies</p>
-                    <p className="text-2xl font-black text-blue-500">{pendingStudies}</p>
+                    <p className="text-3xl font-black text-blue-500 leading-none">{pendingStudies}</p>
                   </div>
-                  <Moon className="h-7 w-7 text-blue-500/20" />
+                  <Moon className="h-8 w-8 text-blue-500/30" />
                 </div>
               </Card>
 
               <Card className={cn(
-                "p-5 transition-all rounded-[1.5rem] border col-span-2",
+                "p-6 transition-all rounded-2xl border col-span-2",
                 skin === "legacy" 
-                  ? "bg-white border-slate-100 shadow-lg shadow-slate-200/30 hover:border-emerald-200" 
-                  : "aeterna-glass border-white/5 hover:border-primary/30"
+                  ? "bg-white border-slate-200 shadow-md hover:shadow-lg hover:border-emerald-300 hover:-translate-y-0.5" 
+                  : "aeterna-glass border-white/10 hover:border-primary/40 hover:shadow-xl"
               )}>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className={cn(
-                      "text-[9px] font-black uppercase tracking-widest",
-                      skin === "legacy" ? "text-slate-300" : "text-foreground/40"
+                      "text-xs font-semibold uppercase tracking-wide mb-1",
+                      skin === "legacy" ? "text-slate-500" : "text-foreground/50"
                     )}>Equipment Available</p>
-                    <p className="text-2xl font-black text-emerald-500">{equipmentAvailable}</p>
+                    <p className="text-3xl font-black text-emerald-500 leading-none">{equipmentAvailable}</p>
                   </div>
-                  <Package className="h-7 w-7 text-emerald-500/20" />
+                  <Package className="h-8 w-8 text-emerald-500/30" />
                 </div>
               </Card>
             </div>
 
             {(nonCompliantCount > 0 || pendingStudies > 0) && (
               <Button variant="outline" className={cn(
-                "w-full h-12 rounded-xl transition-all font-bold tracking-widest uppercase text-[10px]",
+                "w-full h-14 rounded-2xl transition-all font-semibold tracking-wide uppercase text-sm",
                 skin === "legacy" 
-                  ? "border-emerald-100 text-emerald-600 hover:bg-emerald-50" 
-                  : "border-primary/20 text-primary hover:bg-primary/10"
+                  ? "border-emerald-200 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-300 shadow-sm hover:shadow-md" 
+                  : "border-primary/30 text-primary hover:bg-primary/15 hover:border-primary/50"
               )} asChild>
                 <Link href="/cpap/compliance">
                   View Sleep Clinic Dashboard
@@ -638,33 +638,33 @@ export default function DashboardPage() {
           </section>
 
           <section className="space-y-6">
-             <div className="flex items-center gap-3">
-                <ShieldAlert className="h-6 w-6 text-red-500" />
+             <div className="flex items-center gap-4">
+                <ShieldAlert className="h-7 w-7 text-red-500" />
                 <h2 className={cn(
-                  "text-xs font-black uppercase tracking-widest",
-                  skin === "legacy" ? "text-slate-400" : "text-foreground/80"
+                  "text-lg font-bold uppercase tracking-wide",
+                  skin === "legacy" ? "text-slate-600" : "text-foreground"
                 )}>High-Priority Alerts</h2>
              </div>
              
              <div className={cn(
-                "p-6 rounded-[1.5rem] border space-y-4 transition-all",
+                "p-8 rounded-2xl border space-y-4 transition-all",
                 skin === "legacy" 
-                  ? "bg-red-50 border-red-100 shadow-xl shadow-red-500/5 hover:shadow-red-500/10" 
-                  : "aeterna-glass border-red-500/20 bg-red-500/5"
+                  ? "bg-red-50 border-red-200 shadow-lg hover:shadow-xl" 
+                  : "aeterna-glass border-red-500/30 bg-red-500/10"
              )}>
                 <div className="flex items-center gap-3">
-                   <div className="h-2.5 w-2.5 rounded-full bg-red-500 animate-ping" />
-                   <p className="text-[10px] font-black text-red-600 uppercase tracking-widest">Tribunal Override Required</p>
+                   <div className="h-3 w-3 rounded-full bg-red-500 animate-ping" />
+                   <p className="text-sm font-bold text-red-600 uppercase tracking-wide">Tribunal Override Required</p>
                 </div>
                 <p className={cn(
-                  "text-sm font-medium leading-relaxed",
-                  skin === "legacy" ? "text-red-700/70" : "text-foreground/70"
+                  "text-base font-medium leading-relaxed",
+                  skin === "legacy" ? "text-red-700" : "text-foreground/80"
                 )}>
                    Nexus-Physician flagged a contradictory dosing instruction in Room 4-B. Manual intervention bypassed by Vanguard-Compliance.
                 </p>
-                <Button size="sm" variant="outline" className={cn(
-                  "w-full h-10 transition-all text-[10px] font-black uppercase tracking-widest rounded-xl",
-                  skin === "legacy" ? "border-red-200 text-red-600 hover:bg-red-100" : "border-red-500/20 text-red-400 hover:bg-red-500/10"
+                <Button size="lg" variant="outline" className={cn(
+                  "w-full h-12 transition-all text-sm font-bold uppercase tracking-wide rounded-2xl",
+                  skin === "legacy" ? "border-red-300 text-red-600 hover:bg-red-100 hover:border-red-400" : "border-red-500/30 text-red-400 hover:bg-red-500/15 hover:border-red-500/50"
                 )}>
                    INVESTIGATE PROTOCOL
                 </Button>

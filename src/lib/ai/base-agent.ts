@@ -8,6 +8,7 @@ import {
 } from "@/types/ai"
 import { UserRole } from "@/types/database"
 import { createServiceRoleClient } from "@/lib/supabase/client"
+import { OpenAIClient } from "./openai-client"
 
 export abstract class BaseAgent implements BaseAgentInterface {
   public readonly id: string
@@ -108,12 +109,35 @@ export abstract class BaseAgent implements BaseAgentInterface {
     messages: AgentMessage[],
     tools?: unknown[]
   ): Promise<AgentMessage> {
-    // This is a placeholder - will be implemented with actual LLM integration
-    // For now, return a mock response
-    return {
-      role: "assistant",
-      content: "This is a placeholder response. LLM integration will be implemented.",
-      timestamp: new Date().toISOString(),
+    try {
+      // Use real OpenAI integration
+      const result = await OpenAIClient.chat(
+        messages.map(m => ({ role: m.role, content: m.content })),
+        {
+          model: this.config.model || 'gpt-4-turbo-preview',
+          temperature: this.config.temperature ?? 0.7,
+          maxTokens: this.config.maxTokens ?? 1000,
+          tools: tools as any
+        }
+      )
+
+      // Log token usage for monitoring
+      if (result.usage) {
+        console.log(`[AI Agent ${this.name}] Tokens: ${result.usage.totalTokens}, Cost: $${result.usage.cost.toFixed(4)}`)
+      }
+
+      return {
+        role: "assistant",
+        content: result.content,
+        timestamp: new Date().toISOString()
+      }
+    } catch (error) {
+      console.error(`[AI Agent ${this.name}] Error:`, error)
+      return {
+        role: "assistant",
+        content: "I apologize, but I'm having trouble processing your request. Please try again.",
+        timestamp: new Date().toISOString()
+      }
     }
   }
 

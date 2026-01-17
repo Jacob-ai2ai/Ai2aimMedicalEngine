@@ -33,11 +33,11 @@ export default async function CommunicationsPage({
     )
   }
 
-  if (searchParams.type) {
+  if (searchParams.type && searchParams.type !== "all") {
     query = query.eq("communication_type", searchParams.type)
   }
 
-  if (searchParams.direction) {
+  if (searchParams.direction && searchParams.direction !== "all") {
     query = query.eq("direction", searchParams.direction)
   }
 
@@ -93,25 +93,25 @@ export default async function CommunicationsPage({
                   defaultValue={searchParams.search}
                 />
               </div>
-              <Select name="type" defaultValue={searchParams.type}>
+              <Select name="type" defaultValue={searchParams.type || "all"}>
                 <SelectTrigger className="w-full md:w-[180px]">
                   <Filter className="h-4 w-4 mr-2" />
                   <SelectValue placeholder="All Types" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Types</SelectItem>
+                  <SelectItem value="all">All Types</SelectItem>
                   <SelectItem value="letter">Letter</SelectItem>
                   <SelectItem value="referral">Referral</SelectItem>
                   <SelectItem value="message">Message</SelectItem>
                   <SelectItem value="notification">Notification</SelectItem>
                 </SelectContent>
               </Select>
-              <Select name="direction" defaultValue={searchParams.direction}>
+              <Select name="direction" defaultValue={searchParams.direction || "all"}>
                 <SelectTrigger className="w-full md:w-[180px]">
                   <SelectValue placeholder="All Directions" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Directions</SelectItem>
+                  <SelectItem value="all">All Directions</SelectItem>
                   <SelectItem value="inbound">Inbound</SelectItem>
                   <SelectItem value="outbound">Outbound</SelectItem>
                 </SelectContent>

@@ -18,7 +18,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SerialNumberTracker } from "@/components/sleep-clinic/serial-number-tracker"
 import { EquipmentAssignmentCard } from "@/components/sleep-clinic/equipment-assignment-card"
-import { dmeService, DMEInventoryItem } from "@/lib/medical/dme-service"
+import type { DMEInventoryItem } from "@/lib/medical/dme-service"
 import { useState, useEffect } from "react"
 
 const inventory = [

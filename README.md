@@ -67,11 +67,14 @@ ai2aimRX/
 
 ## 🚀 Getting Started
 
+> **👥 New Team Member?** See [TEAM_SETUP.md](./TEAM_SETUP.md) for the quickest path to get running.
+
 ### Prerequisites
 
-- Node.js 18+ installed
+- **Node.js 20+** installed (use `.nvmrc` if you have nvm: `nvm use`)
 - npm or yarn package manager
 - Supabase account (free tier works)
+- (Optional) Docker Desktop for containerized development
 
 ### Installation
 
@@ -88,14 +91,16 @@ ai2aimRX/
 
 3. **Set up environment variables:**
    ```bash
-   cp .env.local.example .env.local
+   cp .env.example .env
    ```
    
-   Edit `.env.local` and add your credentials:
+   Edit `.env` and add your credentials:
    ```env
-   # Supabase
+   # Supabase (Required)
    NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   
+   # Optional
    SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
    
    # Builder.io
@@ -108,8 +113,10 @@ ai2aimRX/
 
 4. **Set up Supabase:**
    - Create a Supabase project at [supabase.com](https://supabase.com)
-   - Run migrations from `supabase/migrations/` in SQL Editor
-   - Enable pgvector extension: `CREATE EXTENSION IF NOT EXISTS vector;`
+   - **Run migrations** (choose one):
+     - **Dashboard**: Go to SQL Editor, run each file in order from `supabase/migrations/`
+     - **CLI**: `npm install -g supabase && supabase link --project-ref <ref> && supabase db push`
+   - **Enable extension**: In SQL Editor, run `CREATE EXTENSION IF NOT EXISTS vector;`
 
 5. **Run the development server:**
    ```bash

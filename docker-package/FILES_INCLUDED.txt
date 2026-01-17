@@ -1,0 +1,26 @@
+Docker Development Package - Files Included
+============================================
+
+Core Docker Files:
+- Dockerfile.dev (Development Dockerfile)
+- docker-compose.dev.yml (Docker Compose configuration)
+- .dockerignore (Build exclusions)
+
+Environment & Config:
+- .env.example (Environment variables template)
+- .nvmrc (Node.js version - v20.20.0)
+- package.json (Project dependencies)
+- package-lock.json (Locked dependency versions)
+
+Documentation:
+- README.md (This package overview)
+- DOCKER_SETUP.md (Detailed setup guide)
+- TEAM_SETUP.md (Team onboarding guide)
+- DOCKER_VERIFY.md (Verification & troubleshooting)
+- verify-docker.sh (Automated verification script)
+
+Total Files: 11 files
+Package Size: ~50KB (excluding node_modules)
+
+Note: This package contains Docker configuration only.
+The full source code should be obtained from the repository.

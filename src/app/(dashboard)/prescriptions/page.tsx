@@ -37,7 +37,7 @@ export default async function PrescriptionsPage({
     )
   }
 
-  if (searchParams.status) {
+  if (searchParams.status && searchParams.status !== "all") {
     query = query.eq("status", searchParams.status)
   }
 
@@ -77,13 +77,13 @@ export default async function PrescriptionsPage({
                 defaultValue={searchParams.search}
               />
             </div>
-            <Select name="status" defaultValue={searchParams.status}>
+            <Select name="status" defaultValue={searchParams.status || "all"}>
               <SelectTrigger className="w-full md:w-[180px]">
                 <Filter className="h-4 w-4 mr-2" />
                 <SelectValue placeholder="All Statuses" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Statuses</SelectItem>
+                <SelectItem value="all">All Statuses</SelectItem>
                 <SelectItem value="pending">Pending</SelectItem>
                 <SelectItem value="approved">Approved</SelectItem>
                 <SelectItem value="rejected">Rejected</SelectItem>

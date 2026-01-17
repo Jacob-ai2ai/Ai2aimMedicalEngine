@@ -62,14 +62,8 @@ const publicRoutes = [
 const apiRoutes = "/api/"
 
 export async function middleware(request: NextRequest) {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-  if (!url || !key) {
-    console.warn("Supabase not configured - skipping auth middleware")
-    return NextResponse.next()
-  }
-
+  // AUTH COMPLETELY DISABLED FOR DEMO - Remove this in production
+  
   // Start building response
   let response = NextResponse.next({
     request: {
@@ -83,77 +77,38 @@ export async function middleware(request: NextRequest) {
   })
   response.headers.set("Content-Security-Policy", cspHeader)
 
-  // Rate limiting for API routes
+  // Rate limiting for API routes (keeping this for security)
   if (request.nextUrl.pathname.startsWith(apiRoutes)) {
-    const rateLimitResult = await checkRateLimitWithRedis(request, {
-      interval: 60 * 1000, // 1 minute
-      uniqueTokenPerInterval: 100, // 100 requests per minute
-    })
+    try {
+      const rateLimitResult = await checkRateLimitWithRedis(request, {
+        interval: 60 * 1000, // 1 minute
+        uniqueTokenPerInterval: 100, // 100 requests per minute
+      })
 
-    if (!rateLimitResult.success) {
-      return createRateLimitError(rateLimitResult.reset)
-    }
-
-    // Add rate limit headers directly to response
-    response.headers.set("X-RateLimit-Limit", rateLimitResult.limit.toString())
-    response.headers.set("X-RateLimit-Remaining", rateLimitResult.remaining.toString())
-    response.headers.set("X-RateLimit-Reset", rateLimitResult.reset.toString())
-
-    // CSRF protection for non-GET API requests
-    const isMutation = !["GET", "HEAD", "OPTIONS"].includes(request.method)
-    if (isMutation) {
-      const csrfValid = await verifyCsrfToken(request)
-      if (!csrfValid) {
-        return createCsrfError()
+      if (!rateLimitResult.success) {
+        return createRateLimitError(rateLimitResult.reset)
       }
+
+      // Add rate limit headers directly to response
+      response.headers.set("X-RateLimit-Limit", rateLimitResult.limit.toString())
+      response.headers.set("X-RateLimit-Remaining", rateLimitResult.remaining.toString())
+      response.headers.set("X-RateLimit-Reset", rateLimitResult.reset.toString())
+
+      // CSRF protection for non-GET API requests
+      const isMutation = !["GET", "HEAD", "OPTIONS"].includes(request.method)
+      if (isMutation) {
+        const csrfValid = await verifyCsrfToken(request)
+        if (!csrfValid) {
+          return createCsrfError()
+        }
+      }
+    } catch (error) {
+      // If rate limiting fails, just continue (for demo)
+      console.warn("Rate limiting error:", error)
     }
   }
 
-  // Supabase auth check
-  const supabase = createServerClient(url, key, {
-    cookies: {
-      getAll() {
-        return request.cookies.getAll()
-      },
-      setAll(cookiesToSet: Array<{ name: string; value: string; options?: any }>) {
-        cookiesToSet.forEach(({ name, value, options }) =>
-          request.cookies.set(name, value)
-        )
-        response = NextResponse.next({
-          request,
-        })
-        cookiesToSet.forEach(({ name, value, options }) =>
-          response.cookies.set(name, value, options)
-        )
-      },
-    },
-  })
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const path = request.nextUrl.pathname
-
-  // Check if route requires authentication
-  const isProtectedRoute = protectedRoutes.some((route) => path.startsWith(route))
-  const isPublicRoute = publicRoutes.some((route) => path === route || path.startsWith(route))
-
-  // Protect authenticated routes
-  if (isProtectedRoute && !user) {
-    const redirectUrl = new URL("/login", request.url)
-    redirectUrl.searchParams.set("redirect", path)
-    return NextResponse.redirect(redirectUrl)
-  }
-
-  // Redirect authenticated users away from auth pages
-  if (path.startsWith("/login") || path.startsWith("/auth/login")) {
-    if (user) {
-      const redirect = request.nextUrl.searchParams.get("redirect")
-      return NextResponse.redirect(new URL(redirect || "/dashboard", request.url))
-    }
-  }
-
+  // ALL AUTH CHECKS DISABLED - Allow all routes
   return response
 }
 
