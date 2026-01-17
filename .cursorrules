@@ -1,0 +1,42 @@
+# Cursor Rules for AI2AIM RX Platform
+
+## Project Context
+This is a medical RX management platform built with Next.js 14+, TypeScript, Supabase, and AI agents.
+
+## Code Style
+- Use TypeScript strict mode
+- Prefer functional components with hooks
+- Use Tailwind CSS for styling
+- Follow Next.js App Router conventions
+- Use shadcn/ui components when available
+
+## File Organization
+- Components in `src/components/`
+- Business logic in `src/lib/`
+- Types in `src/types/`
+- Hooks in `src/hooks/`
+- API routes in `src/app/api/`
+
+## Medical Domain
+- Always consider HIPAA compliance
+- Validate all medical data inputs
+- Use proper error handling for sensitive operations
+- Log all actions for audit trails
+
+## AI Agents
+- All agents extend BaseAgent
+- Use agent registry for agent management
+- Implement proper error handling
+- Log all agent interactions
+
+## Database
+- Use Supabase client/server utilities
+- Always use RLS policies
+- Validate data before database operations
+- Use transactions for multi-step operations
+
+## Testing
+- Write tests for critical business logic
+- Test AI agent interactions
+- Test automation workflows
+- Test authentication flows

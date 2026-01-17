@@ -1,0 +1,44 @@
+[
+  {
+    "summary": "Prescription Management",
+    "description": "Complete prescription lifecycle management from creation to dispensing. Includes prescription creation, verification, approval, filling, and tracking.",
+    "issueType": "Epic",
+    "priority": "High"
+  },
+  {
+    "summary": "Patient Management",
+    "description": "Comprehensive patient record management including patient creation, search, history viewing, and demographic management.",
+    "issueType": "Epic",
+    "priority": "High"
+  },
+  {
+    "summary": "Communication Management",
+    "description": "System for managing medical communications including letters, referrals, messages, and notifications with AI-powered encoding.",
+    "issueType": "Epic",
+    "priority": "High"
+  },
+  {
+    "summary": "AI Agent Interactions",
+    "description": "Role-based AI agents for automated tasks including Pharmacist, Physician, Nurse, Billing, Compliance agents, and Encoding agents.",
+    "issueType": "Epic",
+    "priority": "High"
+  },
+  {
+    "summary": "Automation",
+    "description": "Workflow automation system with triggers (event, schedule, condition, webhook) and actions (notification, task, API call, AI agent, workflow).",
+    "issueType": "Epic",
+    "priority": "Medium"
+  },
+  {
+    "summary": "Mobile Access",
+    "description": "Mobile-responsive design and real-time updates for mobile devices, enabling remote work and on-the-go access.",
+    "issueType": "Epic",
+    "priority": "High"
+  },
+  {
+    "summary": "Reporting and Analytics",
+    "description": "Dashboard statistics, report generation, and analytics for system usage, performance, and compliance reporting.",
+    "issueType": "Epic",
+    "priority": "Low"
+  }
+]
