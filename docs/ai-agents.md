@@ -11,6 +11,7 @@ The AI2AIM RX platform includes a comprehensive AI agent framework with role-bas
 These agents are specialized for specific medical roles:
 
 #### 1. Pharmacist Agent
+
 - **Purpose**: Prescription verification, drug interactions, medication counseling
 - **Capabilities**:
   - Prescription verification
@@ -24,6 +25,7 @@ These agents are specialized for specific medical roles:
   - Validate dosages
 
 #### 2. Physician Agent
+
 - **Purpose**: Prescription authorization, patient review, clinical decision support
 - **Capabilities**:
   - Prescription authorization
@@ -37,6 +39,7 @@ These agents are specialized for specific medical roles:
   - Assist with diagnoses
 
 #### 3. Administrative Agent
+
 - **Purpose**: Administrative tasks, scheduling, document processing
 - **Capabilities**:
   - Document processing
@@ -50,6 +53,7 @@ These agents are specialized for specific medical roles:
   - Assist with data entry
 
 #### 4. Nurse Agent
+
 - **Purpose**: Patient care coordination, follow-ups, care planning
 - **Capabilities**:
   - Care coordination
@@ -63,6 +67,7 @@ These agents are specialized for specific medical roles:
   - Provide patient education
 
 #### 5. Billing Agent
+
 - **Purpose**: Insurance processing, billing, payment management
 - **Capabilities**:
   - Insurance verification
@@ -76,6 +81,7 @@ These agents are specialized for specific medical roles:
   - Handle payments
 
 #### 6. Compliance Agent
+
 - **Purpose**: Regulatory compliance, audits, quality assurance
 - **Capabilities**:
   - Regulatory compliance
@@ -88,11 +94,38 @@ These agents are specialized for specific medical roles:
   - Monitor quality
   - Generate reports
 
+#### 7. Nexus (Core Orchestrator)
+
+- **Purpose**: The Aeterna Core Intelligence. Orchestrates the unified medical ecosystem.
+- **Capabilities**:
+  - Workflow orchestration
+  - System optimization
+  - Predictive analytics
+  - Fleet command
+- **Use Cases**:
+  - Manage global clinical workflows
+  - Orchestrate specialized agent activities
+  - Provide operational intelligence
+
+#### 8. Vanguard (Safety Overlord)
+
+- **Purpose**: Monitoring clinical rituals for adherence to 2024 Alberta Health/CPS Clinical Accreditation Standards.
+- **Capabilities**:
+  - Compliance monitoring
+  - Safety override
+  - Accreditation audit
+  - Risk detection
+- **Use Cases**:
+  - Real-time workflow compliance audits
+  - Enforce clinical safety protocols
+  - Identify accreditation gaps via Cognitive Feed
+
 ### Encoding Agents
 
 These agents extract and structure data from documents:
 
 #### 1. Letter Encoding Agent
+
 - **Purpose**: Process inbound/outbound letters
 - **Extracts**:
   - Direction (inbound/outbound)
@@ -104,6 +137,7 @@ These agents extract and structure data from documents:
   - Category
 
 #### 2. Referral Encoding Agent
+
 - **Purpose**: Process referral documents
 - **Extracts**:
   - Referring provider
@@ -114,6 +148,7 @@ These agents extract and structure data from documents:
   - Specialty
 
 #### 3. Communication Encoding Agent
+
 - **Purpose**: Categorize and encode communications
 - **Extracts**:
   - Communication category
@@ -123,6 +158,7 @@ These agents extract and structure data from documents:
   - Suggested recipient
 
 #### 4. Document Encoding Agent
+
 - **Purpose**: Extract structured data from various documents
 - **Extracts**:
   - Document type
@@ -135,6 +171,7 @@ These agents extract and structure data from documents:
 ### Base Agent Class
 
 All agents extend `BaseAgent` which provides:
+
 - Session management
 - State management
 - Message handling
@@ -144,6 +181,7 @@ All agents extend `BaseAgent` which provides:
 ### Agent Registry
 
 The `AgentRegistry` manages:
+
 - Agent registration
 - Agent lookup
 - Role-based routing
@@ -152,6 +190,7 @@ The `AgentRegistry` manages:
 ### Agent Orchestrator
 
 The `AgentOrchestrator` handles:
+
 - Request routing
 - Session creation
 - Multi-agent coordination
@@ -191,6 +230,7 @@ POST /api/ai/agents
 ## Integration with RAG
 
 Agents can use RAG for context:
+
 - Document retrieval
 - Semantic search
 - Context injection
@@ -199,6 +239,7 @@ Agents can use RAG for context:
 ## Integration with MCP Tools
 
 Agents can execute tools via MCP:
+
 - Database queries
 - API calls
 - System operations
@@ -207,6 +248,7 @@ Agents can execute tools via MCP:
 ## Configuration
 
 Agents are configured in the database (`ai_agents` table):
+
 - System prompts
 - Capabilities
 - Configuration parameters

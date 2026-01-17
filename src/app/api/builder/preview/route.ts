@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { builder } from '@builder.io/react'
+import { builder } from '@builder.io/sdk'
 import { BUILDER_API_KEY } from '@/lib/builder/builder-config'
 
 export async function GET(request: NextRequest) {

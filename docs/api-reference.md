@@ -376,6 +376,166 @@ response = requests.post(
 )
 ```
 
+### Pulmonary Function Testing (PFT)
+
+#### POST /api/pft/tests
+Schedule a new PFT test.
+
+**Request**:
+```json
+{
+  "patientId": "patient-uuid",
+  "testType": "spirometry",
+  "testDate": "2024-02-01",
+  "locationId": "location-uuid",
+  "indication": "asthma",
+  "notes": "Follow-up test"
+}
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "test": {
+    "id": "test-uuid",
+    "patient_id": "patient-uuid",
+    "test_type": "spirometry",
+    "test_date": "2024-02-01",
+    "status": "scheduled"
+  }
+}
+```
+
+#### GET /api/pft/tests
+List PFT tests. Supports query parameters: `patientId`, `status`, `locationId`.
+
+**Response**:
+```json
+{
+  "success": true,
+  "tests": [...],
+  "count": 10
+}
+```
+
+#### GET /api/pft/tests/[id]
+Get a specific PFT test with location information.
+
+#### PUT /api/pft/tests/[id]
+Update PFT test status or notes.
+
+#### POST /api/pft/tests/[id]/results
+Record PFT test results.
+
+**Request**:
+```json
+{
+  "patientId": "patient-uuid",
+  "fev1Liters": 2.5,
+  "fev1PercentPredicted": 85.0,
+  "fvcLiters": 3.2,
+  "fvcPercentPredicted": 90.0,
+  "fev1FvcRatio": 0.78,
+  "ageAtTest": 45,
+  "heightCm": 175,
+  "weightKg": 75,
+  "gender": "male",
+  "testQuality": "excellent"
+}
+```
+
+#### POST /api/pft/tests/[id]/interpret
+Create clinical interpretation of PFT results.
+
+**Request**:
+```json
+{
+  "pftResultId": "result-uuid",
+  "interpretedBy": "user-uuid",
+  "overallPattern": "obstructive",
+  "severity": "moderate",
+  "diagnosis": "Asthma (likely)",
+  "recommendations": "Continue current medication",
+  "followUpRequired": true,
+  "followUpDate": "2024-03-01"
+}
+```
+
+### Clinic Locations
+
+#### GET /api/pft/locations
+Get all clinic locations. Supports query parameter: `activeOnly` (default: true).
+
+**Response**:
+```json
+{
+  "success": true,
+  "locations": [
+    {
+      "id": "location-uuid",
+      "location_code": "EDM-1",
+      "name": "Edmonton - Hazeldean",
+      "address_line1": "9623-66 Ave NW",
+      "city": "Edmonton",
+      "province": "AB",
+      "postal_code": "T6E 0M2",
+      "phone": "+1-587-523-0030"
+    }
+  ],
+  "count": 4
+}
+```
+
+### Referrals
+
+#### POST /api/referrals
+Create a new referral form.
+
+**Request**:
+```json
+{
+  "patientId": "patient-uuid",
+  "referringPhysicianName": "Dr. Smith",
+  "referringClinicName": "ABC Clinic",
+  "referralType": "pft",
+  "reasonForReferral": "Suspected COPD",
+  "clinicalHistory": "Patient with chronic cough",
+  "insuranceProvider": "Blue Cross",
+  "insuranceId": "BC123456"
+}
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "referral": {
+    "id": "referral-uuid",
+    "referral_number": "REF-20240201-0001",
+    "status": "received"
+  }
+}
+```
+
+#### GET /api/referrals
+List referrals. Supports query parameters: `patientId`, `status`, `type`.
+
+#### GET /api/referrals/[id]
+Get a specific referral.
+
+#### PUT /api/referrals/[id]
+Update referral status, link to studies/tests, or add notes.
+
+**Request**:
+```json
+{
+  "status": "scheduled",
+  "scheduledDate": "2024-02-15",
+  "linkedPftTestId": "test-uuid"
+}
+```
+
 ## Testing
 
 Use the health endpoint to verify API is running:

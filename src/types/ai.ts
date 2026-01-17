@@ -27,6 +27,7 @@ export interface AgentContext {
   sessionId?: string
   patientId?: string
   prescriptionId?: string
+  communicationType?: string
   metadata?: Record<string, unknown>
 }
 

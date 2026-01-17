@@ -4,6 +4,9 @@ import "./globals.css"
 // Builder.io components are registered in builder-components.tsx
 // They will be loaded when Builder.io pages are accessed
 
+import { SkinProvider } from "@/components/theme/skin-provider"
+import { Toaster } from "sonner"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -18,7 +21,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <SkinProvider>
+          {children}
+          <Toaster position="top-right" />
+        </SkinProvider>
+      </body>
     </html>
   )
 }

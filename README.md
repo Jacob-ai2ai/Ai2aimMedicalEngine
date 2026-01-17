@@ -10,6 +10,10 @@ A comprehensive medical RX management platform built with Next.js, React, TypeSc
 ## 🚀 Features
 
 - **Medical Management**: Complete prescription, patient, and communication management
+- **Sleep Clinic Features**: DME equipment management, CPAP compliance monitoring, sleep studies, PFT testing
+- **Pulmonary Function Testing**: Spirometry, lung volume, and diffusion capacity testing with automated interpretation
+- **Multi-Location Support**: Clinic location management for multi-site operations
+- **Referral Management**: Digital referral form processing and tracking
 - **AI Agents**: Role-based AI agents (Pharmacist, Physician, Nurse, Admin, Billing, Compliance)
 - **Encoding Agents**: AI agents for document processing (letters, referrals, communications)
 - **Automation Engine**: Comprehensive automation system with triggers and actions

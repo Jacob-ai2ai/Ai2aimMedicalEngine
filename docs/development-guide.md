@@ -3,6 +3,7 @@
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
 - npm or yarn
 - Git
@@ -23,7 +24,7 @@
 npm run dev
 ```
 
-Server runs on http://localhost:3000
+Server runs on <http://localhost:3000>
 
 ### Type Checking
 
@@ -80,33 +81,38 @@ npm run format
 3. Test thoroughly
 4. Monitor execution logs
 
-## Best Practices
+### Best Practices
 
-### TypeScript
+#### TypeScript
+
 - Use strict mode
 - Define types for all data
 - Avoid `any` type
 - Use interfaces for object shapes
 
-### React
+#### React
+
 - Prefer Server Components
 - Use Client Components only when needed
 - Implement proper error boundaries
 - Handle loading states
 
-### Database
+#### Database
+
 - Always use RLS policies
 - Validate inputs
 - Use transactions for multi-step operations
 - Index frequently queried columns
 
-### Security
+#### Security
+
 - Never expose service role key client-side
 - Validate all user inputs
 - Sanitize data before display
 - Use parameterized queries (Supabase handles)
 
-### Performance
+#### Performance
+
 - Use Server Components
 - Implement proper caching
 - Use Next.js Image optimization
@@ -144,17 +150,20 @@ npm run format
 
 ### Common Issues
 
-**Supabase Connection Errors**
+#### Supabase Connection Errors
+
 - Check `.env.local` credentials
 - Verify Supabase project is active
 - Check network connectivity
 
-**TypeScript Errors**
+#### TypeScript Errors
+
 - Run `npm run type-check`
 - Check type definitions
 - Verify imports
 
-**Build Errors**
+#### Build Errors
+
 - Clear `.next` directory
 - Reinstall dependencies
 - Check for missing files
@@ -178,6 +187,7 @@ npm run format
 ### Commit Messages
 
 Use conventional commits:
+
 - `feat:` New feature
 - `fix:` Bug fix
 - `docs:` Documentation

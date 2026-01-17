@@ -59,6 +59,15 @@ const config = {
           error: "hsl(0, 84%, 60%)",
           info: "hsl(199, 89%, 48%)",
         },
+        // Aeterna OS Space-Age Palette
+        aeterna: {
+          void: "#020408",      // Deep space background
+          nebula: "#10B981",    // Emerald accent
+          supernova: "#F9FAFB", // High-intensity white
+          stellar: "#F59E0B",   // Golden starlight
+          neural: "#8B5CF6",    // AI thought violet
+          acrylic: "rgba(255, 255, 255, 0.03)", // Translucent surfaces
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

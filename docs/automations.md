@@ -1,15 +1,32 @@
 # Automations Documentation
 
-## Overview
-
 The automation system allows you to automate any business function with triggers and actions. Every task and function should have automation capabilities.
+
+## Aeterna Workflow Runtime (v2.1)
+
+Aeterna OS introduces an event-driven autonomous orchestrator designed for high-fidelity medical rituals. Unlike standard automations, Aeterna workflows are state-aware and persistent.
+
+### Workflow Simulator
+
+The platform includes a dedicated **Workflow Simulator** (`/workflow-simulator`) that allows clinicians to:
+
+- **Dry-run medical rituals**: Test autonomous dispatch logic without clinical side-effects.
+- **Neural Audit Trail**: View real-time AI decision-making logs ("The Cognitive Feed").
+- **Safety Verification**: Ensure workflows comply with 2024 Alberta Health standards before deployment.
+
+### Key Rituals
+
+- **Infusion Clinic Nurse Dispatch**: Autonomously re-routes staff based on patient volume telemetry.
+- **Level 3 Sleep Monitor Dispatch**: Coordinates portable diagnostic hardware and physician reviews.
 
 ## Trigger Types
 
 ### 1. Event Triggers
+
 Triggered by database events or application events.
 
 **Configuration**:
+
 ```json
 {
   "type": "event",
@@ -21,6 +38,7 @@ Triggered by database events or application events.
 ```
 
 **Available Events**:
+
 - `prescription.created`
 - `prescription.updated`
 - `prescription.status_changed`
@@ -29,9 +47,11 @@ Triggered by database events or application events.
 - `automation.completed`
 
 ### 2. Schedule Triggers
+
 Triggered on a schedule (daily, hourly, custom).
 
 **Configuration**:
+
 ```json
 {
   "type": "schedule",
@@ -44,15 +64,18 @@ Triggered on a schedule (daily, hourly, custom).
 ```
 
 **Schedule Options**:
+
 - `daily` - Run once per day at specified hour
 - `hourly` - Run every hour
 - `weekly` - Run weekly on specified day
 - `custom` - Cron expression
 
 ### 3. Condition Triggers
+
 Triggered when conditions are met.
 
 **Configuration**:
+
 ```json
 {
   "type": "condition",
@@ -65,6 +88,7 @@ Triggered when conditions are met.
 ```
 
 **Operators**:
+
 - `equals`
 - `not_equals`
 - `greater_than`
@@ -72,9 +96,11 @@ Triggered when conditions are met.
 - `contains`
 
 ### 4. Webhook Triggers
+
 Triggered by external webhooks.
 
 **Configuration**:
+
 ```json
 {
   "type": "webhook",
@@ -88,9 +114,11 @@ Triggered by external webhooks.
 ## Action Types
 
 ### 1. Notification Actions
+
 Send notifications (email, in-app, SMS).
 
 **Configuration**:
+
 ```json
 {
   "type": "notification",
@@ -103,9 +131,11 @@ Send notifications (email, in-app, SMS).
 ```
 
 ### 2. Task Actions
+
 Execute system tasks.
 
 **Configuration**:
+
 ```json
 {
   "type": "task",
@@ -120,15 +150,18 @@ Execute system tasks.
 ```
 
 **Available Tasks**:
+
 - `update_prescription_status`
 - `create_communication`
 - `update_patient`
 - `send_email`
 
 ### 3. API Call Actions
+
 Make external API calls.
 
 **Configuration**:
+
 ```json
 {
   "type": "api_call",
@@ -146,9 +179,11 @@ Make external API calls.
 ```
 
 ### 4. AI Agent Actions
+
 Invoke AI agents.
 
 **Configuration**:
+
 ```json
 {
   "type": "ai_agent",
@@ -163,9 +198,11 @@ Invoke AI agents.
 ```
 
 ### 5. Workflow Actions
+
 Execute multi-step workflows.
 
 **Configuration**:
+
 ```json
 {
   "type": "workflow",
@@ -174,11 +211,11 @@ Execute multi-step workflows.
     "steps": [
       {
         "type": "task",
-        "config": { ... }
+        "config": { "taskType": "sample" }
       },
       {
         "type": "notification",
-        "config": { ... }
+        "config": { "message": "sample" }
       }
     ]
   }
@@ -214,6 +251,7 @@ POST /api/automations
 ### Pre-built Automations
 
 The system includes pre-built automations for:
+
 - Prescription workflow
 - Communication routing
 - Patient follow-ups
@@ -237,6 +275,7 @@ POST /api/automations
 ### Event Processing
 
 Events are automatically processed:
+
 ```bash
 POST /api/automations/events
 {
@@ -250,6 +289,7 @@ POST /api/automations/events
 ## Execution Logs
 
 All automation runs are logged in `automation_runs` table:
+
 - Execution status
 - Input data
 - Output data
